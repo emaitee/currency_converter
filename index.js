@@ -1,7 +1,40 @@
 
-convert = () => {
+convertCurrency = (amount, fromCurrency, toCurrency, callback) => {
+	let apiKey = 'dont-know-yet';
+	// let fromText = document.querySelector('#fromText');
+	let fromCurrency = document.querySelector('#fromCurrency').value;
+	let toCurrency = document.querySelector('#toCurrency').value;
 
+	const query = `${fromCurrency}_${toCurrency}`;
+
+	const convertURL = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
+
+	fetch(convertURL).then(res => res.json()).then(data => {
+		let result = data[query];
+		if(result){
+			let total = result*amount;
+			callback(null, Math.round(total*100)/100);
+		} else {
+			let err = new Error(`Value not found for ${query}`);
+			console.log(err);
+			callback(err);
+		}
+	}).then(err => console.log(err));
 }
+
+convert = (event) => {
+	event.preventDefault();
+	let fromAmount = document.querySelector('#fromAmount').value;
+	let toAmount = document.querySelector('#toAmount');
+	let from = document.querySelector('#fromCurrency').value;
+	let to = document.querySelector('#toCurrency').value;
+
+	convertCurrency(fromAmount, from, to, function(err, amount){
+		toAmount.value = amount;
+		console.log(amount)
+	})
+}
+
 
 appendToSelect = (data, chosenSelectId) => {
 	let currencyName, currencySymbol, id;
@@ -13,7 +46,7 @@ appendToSelect = (data, chosenSelectId) => {
 		}	
 		id = obj[key].id;
 		let option = document.createElement("option");
-		option.text = `${currencySymbol}(${currencyName})`;
+		option.text = `${id}(${currencyName})`;
 		option.value = id
 		let select = document.querySelector(`#${chosenSelectId}`);
 		select.appendChild(option);
@@ -21,8 +54,6 @@ appendToSelect = (data, chosenSelectId) => {
 }
 
 fetchCurrencies = () => {
-	let fromText = document.querySelector('#fromText');
-	let toText = document.querySelector('#toText');
 	const url = 'https://free.currencyconverterapi.com/api/v5/currencies';
 	fetch(url).then(res => res.json()).then(data => {
 		appendToSelect(data, 'fromCurrency');
@@ -36,33 +67,3 @@ runApp = () => {
 
 runApp();
 
-// convert = () => {
-
-// }
-
-// data.results.forEach(element => {
-// 			let option = document.createElement("option");
-// 			option.text = element.currencyName;
-// 			option.value = "id"
-// 			let select = document.querySelector('#fromCurrency');
-// 			select.appendChild(option)
-// 		}
-
-/*
-for (let p in obj){
-			if(obj.hasOwnProperty(p)){
-				currencyName = obj[p].currencyName;
-				if(obj[p].currencySymbol){
-					currencySymbol = obj[p].currencySymbol;
-				}	
-				id = obj[p].id;
-				let option = document.createElement("option");
-				option.text = `${currencyName}(${currencySymbol})`;
-				option.value = id
-				let select1 = document.querySelector('#fromCurrency');
-				let select2 = document.querySelector('#toCurrency');
-				select1.appendChild(option);
-				select2.appendChild(option);
-			}
-		}
-*/

@@ -6,7 +6,7 @@
 	<body>
 		<h1>Currency Converter App</h1>
 		<div class="container">
-			<form onsubmit="">
+			<form>
 				<h2>From</h2>
 				<div class="form-group">
 					<label for="" class="control-label">Currrency</label>
@@ -19,7 +19,7 @@
 					<select name="toCurrency" id="toCurrency"></select>
 					<input type="text" class="toAmount" class="form-control" />
 				</div>
-				<input type="submit" class="btn btn-border-default">
+				<button class="btn btn-border-default" onclick="convert(event)">Submit now</button>
 			</form>
 		</div>
 		<script src="index.js"></script>
