@@ -1,11 +1,8 @@
 
-convertCurrency = (amount, fromCurrency, toCurrency, callback) => {
-	let apiKey = 'dont-know-yet';
-	// let fromText = document.querySelector('#fromText');
-	let fromCurrency = document.querySelector('#fromCurrency').value;
-	let toCurrency = document.querySelector('#toCurrency').value;
 
-	const query = `${fromCurrency}_${toCurrency}`;
+
+convertCurrency = (amount, from, to, callback) => {
+	const query = `${from}_${to}`;
 
 	const convertURL = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
 
@@ -24,13 +21,13 @@ convertCurrency = (amount, fromCurrency, toCurrency, callback) => {
 
 convert = (event) => {
 	event.preventDefault();
-	let fromAmount = document.querySelector('#fromAmount').value;
-	let toAmount = document.querySelector('#toAmount');
-	let from = document.querySelector('#fromCurrency').value;
-	let to = document.querySelector('#toCurrency').value;
+	let fromCurrency = document.querySelector('#fromCurrency');
+	let toCurrency = document.querySelector('#toCurrency');
+	let amount = document.querySelector('#amount');
+	let result = document.querySelector('#result');
 
-	convertCurrency(fromAmount, from, to, function(err, amount){
-		toAmount.value = amount;
+	convertCurrency(amount.value, fromCurrency.value, toCurrency.value, function(err, amount){
+		result.innerHTML = amount;
 		console.log(amount)
 	})
 }
@@ -62,7 +59,15 @@ fetchCurrencies = () => {
 }
 
 runApp = () => {
-	fetchCurrencies()
+	fetchCurrencies();
+
+	// if ('serviceWorker' in navigator) {
+	//     navigator.serviceWorker
+	//     	.register('/service-worker.js')
+	//     	.then(function() { 
+	//         console.log('Service Worker Registered'); 
+	//     });
+	// }
 }
 
 runApp();

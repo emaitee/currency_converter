@@ -2,26 +2,37 @@
 	<header>
 		<title>Currency Converter</title>
 		<link rel="stylesheet" href="index.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	</header>
 	<body>
-		<h1>Currency Converter App</h1>
-		<div class="container">
-			<form>
-				<h2>From</h2>
-				<div class="form-group">
-					<label for="" class="control-label">Currrency</label>
-					<select name="fromCurrency" id="fromCurrency"></select>
-					<input type="text" id="fromAmount" class="form-control" />
+		<div class="card border-primary">
+			<h5 class="card-header text-center text-primary bg-transparent border-primary">Currency Converter</h5>
+		  	<div class="card-body ">
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="basic-addon1">Enter Amount</span>
+				  </div>
+				  <input type="text" class="form-control" id="amount" aria-label="Amount" aria-describedby="basic-addon1">
 				</div>
-				<h2>To</h2>
-				<div class="form-group">
-					<label for="" class="control-label">Currrency</label>
-					<select name="toCurrency" id="toCurrency"></select>
-					<input type="text" class="toAmount" class="form-control" />
+				
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <label class="input-group-text" for="fromCurrency">From Currency</label>
+				  </div>
+				  <select class="custom-select" name="fromCurrency" id="fromCurrency"></select>
 				</div>
-				<button class="btn btn-border-default" onclick="convert(event)">Submit now</button>
-			</form>
-		</div>
+
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <label class="input-group-text" for="toCurrency">To Currency</label>
+				  </div>
+				  <select class="custom-select" name="toCurrency" id="toCurrency"></select>
+				</div>
+
+				<button class="btn border-primary bg-transparent" onclick="convert(event)">Submit now</button>
+				<div id="result"></div>
+			</div>
+	</div>
 		<script src="index.js"></script>
 	</body>
 </html>
