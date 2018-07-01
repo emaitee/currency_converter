@@ -59,8 +59,23 @@ fetchCurrencies = () => {
 registerServiceWorker = () => {
 	if(!navigator.serviceWorker) return;
 
-	navigator.serviceWorker.register('sw.js').then(() => {
+	navigator.serviceWorker.register('sw.js').then((reg) => {
 		console.log('Registration successful!')
+		//if thig page is not loaded with a serviceWorker, in that case, exit early
+		// if(!navigator.serviceWorker.controller){
+		// 	return;
+		// }
+
+		// //if there is an updated worker already waiting, call updateReady()
+		// if(reg.waiting){
+		// 	updateReady()
+		// }
+
+		// if(reg.installing) {
+			
+		// }
+
+
 	}).catch((err) => {
 		console.log('Registration failed:', err)
 	});
