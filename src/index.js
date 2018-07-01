@@ -5,6 +5,7 @@ convertCurrency = (amount, from, to, callback) => {
 	const convertURL = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
 
 	fetch(convertURL).then(res => res.json()).then(data => {
+		console.log(`exchange rates: ${data[query]}`)
 		let result = data[query];
 		if(result){
 			let total = result*amount;
@@ -21,11 +22,11 @@ convert = (event) => {
 	event.preventDefault();
 	let fromCurrency = document.querySelector('#fromCurrency');
 	let toCurrency = document.querySelector('#toCurrency');
-	let amount = document.querySelector('#amount');
+	let fromAmount = document.querySelector('#amount');
 	let result = document.querySelector('#result');
 
-	convertCurrency(amount.value, fromCurrency.value, toCurrency.value, function(err, amount){
-		result.innerHTML = amount;
+	convertCurrency(fromAmount.value, fromCurrency.value, toCurrency.value, function(err, amount){
+		result.innerHTML = `${fromAmount.value} ${fromCurrency.value} = ${amount} ${toCurrency.value}`;
 		console.log(amount)
 	})
 }
