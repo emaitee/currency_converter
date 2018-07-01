@@ -1,6 +1,4 @@
 
-
-
 convertCurrency = (amount, from, to, callback) => {
 	const query = `${from}_${to}`;
 
@@ -58,16 +56,20 @@ fetchCurrencies = () => {
 	}).then(err => console.log(err))
 }
 
-runApp = () => {
-	fetchCurrencies();
+registerServiceWorker = () => {
+	if(!navigator.serviceWorker) return;
 
-	// if ('serviceWorker' in navigator) {
-	//     navigator.serviceWorker
-	//     	.register('/service-worker.js')
-	//     	.then(function() { 
-	//         console.log('Service Worker Registered'); 
-	//     });
-	// }
+	navigator.serviceWorker.register('sw.js').then(() => {
+		console.log('Registration successful!')
+	}).catch((err) => {
+		console.log('Registration failed:', err)
+	});
+}; 
+
+runApp = () => {
+	// fetchCurrencies();
+
+	registerServiceWorker();
 }
 
 runApp();
