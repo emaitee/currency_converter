@@ -22,6 +22,20 @@ self.addEventListener('fetch', (event) => {
 	)
 })
 
+self.addEventListener('fetch', (event) => {
+	event.waitUntil(
+		caches.keys().then(cacheNames => {
+			return Promise.all(
+				cacheNames.filter(cacheNAme => {
+					return cacheNAme.startsWith('page-') && cacheName != staticCacheName;
+				}).map(cacheName => {
+					return caches.delete(cacheName)
+				})
+			);
+		})
+	);
+})
+
 
 // self.addEventListener('message', event => {
 // 	if(event.data.action === 'skipWaiting') {
