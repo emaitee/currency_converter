@@ -1,27 +1,41 @@
 <html>
 	<header>
 		<title>Currency Converter</title>
-		<link rel="stylesheet" href="index.css">
+		<link rel="stylesheet" href="src/index.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	</header>
 	<body>
-		<h1>Currency Converter App</h1>
-		<div class="container">
-			<form onsubmit="">
-				<h2>From</h2>
-				<div class="form-group">
-					<label for="" class="control-label">Currrency</label>
-					<select name="fromCurrency" id="fromCurrency"></select>
-					<input type="text" id="fromAmount" class="form-control" />
+		<div class="card border-primary">
+			<h5 class="card-header text-center bg-transparent border-primary">Currency Converter</h5>
+		  	<div class="card-body ">
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend ">
+				    <span class="input-group-text bg-transparent border-primary" id="basic-addon1">Enter Amount</span>
+				  </div>
+				  <input type="text" class="form-control border-primary" id="amount" aria-label="Amount" aria-describedby="basic-addon1">
 				</div>
-				<h2>To</h2>
-				<div class="form-group">
-					<label for="" class="control-label">Currrency</label>
-					<select name="toCurrency" id="toCurrency"></select>
-					<input type="text" class="toAmount" class="form-control" />
+				
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <label class="input-group-text bg-transparent border-primary" for="fromCurrency">From Currency</label>
+				  </div>
+				  <select class="custom-select border-primary" name="fromCurrency" id="fromCurrency"></select>
 				</div>
-				<input type="submit" class="btn btn-border-default">
-			</form>
-		</div>
-		<script src="index.js"></script>
+
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <label class="input-group-text bg-transparent border-primary" for="toCurrency">To Currency</label>
+				  </div>
+				  <select class="custom-select border-primary" name="toCurrency" id="toCurrency"></select>
+				</div>
+
+				<button class="btn border-primary bg-transparent" onclick="convert(event)">Convert</button>
+				<div id="result">
+					
+				</div>
+			</div>
+	</div>
+		<script src="src/index.js"></script>
+		<script type="text/javascript" src="sw.js"></script>
 	</body>
 </html>
