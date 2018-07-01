@@ -82,7 +82,7 @@ registerServiceWorker = () => {
 }; 
 
 runApp = () => {
-	// fetchCurrencies();
+	fetchCurrencies();
 
 	registerServiceWorker();
 }
